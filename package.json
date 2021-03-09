@@ -1,0 +1,22 @@
+{
+  "name": "to-do-list-typescript",
+  "version": "1.0.0",
+  "description": "to-do-list-typescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:build": "tsc -w",
+    "start:run": "nodemon build/index.js",
+    "start": "concurrently npm:start:*"
+  },
+  "dependencies": {
+    "concurrently": "^6.0.0",
+    "nodemon": "^2.0.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mnxmnz/To-Do-List.git"
+  },
+  "author": "MinJi",
+  "license": "ISC"
+}
