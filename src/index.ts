@@ -1,13 +1,18 @@
-import TodoItems from "./TodoItems"
+import { data } from "./data";
+import TodoItems from "./TodoItems";
+import TodoCollections from "./TodoCollections";
 
-const data = [
-    { id: 1, task: "장보기", complete: true },
-    { id: 2, task: "TS 학습하기", complete: false },
-];
+const sampleTodos: TodoItems[] = data.map(
+    (items) => new TodoItems(items.id, items.task, items.complete) 
+);
 
-console.log("My To Do List");
+const myTodoCollections = new TodoCollections("My To Do List", sampleTodos);
 
-for (let i = 0; i < data.length; i++) {
-    let items = new TodoItems(data[i].id, data[i].task, data[i].complete);
-    items.printDetails();
-}
+myTodoCollections.addTodo("React 학습하기")
+myTodoCollections.addTodo("Redux 학습하기");
+
+myTodoCollections.markComplete(3, true);
+
+console.log(`${myTodoCollections.userName}`);
+
+myTodoCollections.todoItems.forEach((item) => item.printDetails());
