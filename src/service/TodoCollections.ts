@@ -1,4 +1,5 @@
-import TodoItems from "./TodoItems"
+import TodoItems from "../model/TodoItems"
+import { ItemCounts } from './../model/ItemCounts';
 
 class TodoCollections {
     private nextId: number = 1
@@ -32,10 +33,18 @@ class TodoCollections {
 
     removeComplete():void {
         this.itemMap.forEach((item) => {
+
             if(item.complete) {
                 this.itemMap.delete(item.id);
             }
         })
+    }
+
+    getItemCounts(): ItemCounts {
+        return {
+            total: this.itemMap.size,
+            incomplete: this.getTodoItems(false).length
+        }
     }
 
     markComplete(id: number, complete: boolean): void {
