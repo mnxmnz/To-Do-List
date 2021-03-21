@@ -3,10 +3,15 @@ import TodoItems from "./TodoItems"
 class TodoCollections {
     private nextId: number = 1
 
-    constructor(public userName: string, public todoItems: TodoItems[] = []) {}
+    private itemMap: Map<number, TodoItems>;
+
+    constructor(public userName: string, public todoItems: TodoItems[] = []) {
+        this.itemMap = new Map<number, TodoItems>();
+        todoItems.forEach((item) => this.itemMap.set(item.id, item));
+    }
 
     getTodoById(id: number): TodoItems | undefined {
-        return this.todoItems.find((item) => item.id === id);
+        return this.itemMap.get(id);
     }
 
     addTodo(task: string): number {
@@ -14,9 +19,23 @@ class TodoCollections {
             this.nextId++;
         }
 
-        this.todoItems.push(new TodoItems(this.nextId, task));
+        this.itemMap.set(this.nextId, new TodoItems(this.nextId, task));
 
         return this.nextId;
+    }
+
+    getTodoItems(includeComplete: boolean): TodoItems[] {
+        return [...this.itemMap.values()].filter(
+            (item) => includeComplete || !item.complete
+        );
+    }
+
+    removeComplete():void {
+        this.itemMap.forEach((item) => {
+            if(item.complete) {
+                this.itemMap.delete(item.id);
+            }
+        })
     }
 
     markComplete(id: number, complete: boolean): void {

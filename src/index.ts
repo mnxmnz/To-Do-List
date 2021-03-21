@@ -15,4 +15,8 @@ myTodoCollections.markComplete(3, true);
 
 console.log(`${myTodoCollections.userName}`);
 
-myTodoCollections.todoItems.forEach((item) => item.printDetails());
+myTodoCollections.removeComplete();
+
+myTodoCollections.getTodoItems(true).forEach((item) => item.printDetails());
+console.log("==========================================")
+myTodoCollections.getTodoItems(false).forEach((item) => item.printDetails());
