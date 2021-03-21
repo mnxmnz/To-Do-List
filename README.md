@@ -10,7 +10,9 @@
 "typescript": "^4.2.3",
 "ts-node": "^9.1.1",
 "concurrently": "^6.0.0",
-"nodemon": "^2.0.7"
+"nodemon": "^2.0.7",
+"inquirer": "^8.0.0",
+"@types/inquirer": "^7.3.1"
 ```
 
 ## 🖥 Local 실행 방법
