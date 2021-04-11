@@ -7,7 +7,11 @@ import TodoCollections from '../service/TodoCollections';
 class TodoConsole {
     private todoCollections: TodoCollections;
 
+    private showCompleted: boolean;
+
     constructor() {
+        this.showCompleted = true;
+
         const sampleTodos: TodoItems[] = data.map(
             (item) => new TodoItems(item.id, item.task, item.complete)
         );
@@ -21,7 +25,7 @@ class TodoConsole {
             `(${this.todoCollections.getItemCounts().incomplete} Items To Do)`
         )
 
-        this.todoCollections.getTodoItems(true).forEach((item) => item.printDetails());
+        this.todoCollections.getTodoItems(this.showCompleted).forEach((item) => item.printDetails());
     }
 
     promptUser(): void {
@@ -34,9 +38,31 @@ class TodoConsole {
             message: "Choose option",
             choices: Object.values(Commands),
         }).then((answer) => {
-            if(answer['command'] !== Commands.Quit) {
-                this.promptUser();
+            switch(answer['command']) {
+                case Commands.Toggle:
+                    this.showCompleted = !this.showCompleted;
+                    this.promptUser();
+                    break;
+                case Commands.Add:
+                    this.promptAdd();
+                    break;
             }
+        })
+    }
+
+    promptAdd(): void {
+        console.clear();
+
+        inquirer.prompt({
+            type: "input",
+            name: "add",
+            message: "Enter Task: "
+        }).then((answers) => {
+            if(answers["add"] !== "") {
+                this.todoCollections.addTodo(answers["add"]);
+            }
+
+            this.promptUser();
         })
     }
 }

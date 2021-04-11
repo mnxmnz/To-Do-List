@@ -1,4 +1,5 @@
 export enum Commands {
     Quit = "Quit",
-    Add = "Add",
+    Toggle = "Show / Hide Complete List",
+    Add = "Add New Task"
 }
