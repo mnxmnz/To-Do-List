@@ -46,6 +46,10 @@ class TodoConsole {
                 case Commands.Add:
                     this.promptAdd();
                     break;
+                case Commands.Purge:
+                    this.todoCollections.removeComplete();
+                    this.promptUser();
+                    break;
             }
         })
     }
