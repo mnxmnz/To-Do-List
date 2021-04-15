@@ -42,7 +42,11 @@ npm install
 #### [5] Run the Project
 
 ```sh
-npm start
+tsc
+```
+
+```sh
+node build/index.js
 ```
 
 #### :open_file_folder: 참고: [TypeScript](https://www.youtube.com/playlist?list=PLOSNUO27qFbsI9bAIVitBcq-klZae5GMi)
