@@ -27,6 +27,10 @@
 git clone https://github.com/mnxmnz/To-Do-List.git
 ```
 
+```sh
+cd To-Do-List
+```
+
 #### [3] Install Global Packages
 
 ```sh
